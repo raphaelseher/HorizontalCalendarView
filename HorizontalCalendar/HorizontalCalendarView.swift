@@ -106,12 +106,6 @@ public class HorizontalCalendarView: UIView {
     moveToDate(test, animated: false)
   }
   
-  func moveToDate(date : NSDate, animated : Bool) {
-    let indexOfDate = dates.indexOf(horizontalCalendar.truncateDateToYearMonthDay(date))
-    let indexPath = NSIndexPath.init(forItem: indexOfDate!, inSection: 0)
-    collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: animated)
-  }
-  
   func updateActiveIndexPath(indexPath : NSIndexPath) {
     if activeIndexPath != indexPath {
       activeIndexPath = indexPath
@@ -119,6 +113,12 @@ public class HorizontalCalendarView: UIView {
       
       delegate?.horizontalCalendarViewDidUpdate(self, date: dates[indexPath.row])
     }
+  }
+  
+  public func moveToDate(date : NSDate, animated : Bool) {
+    let indexOfDate = dates.indexOf(horizontalCalendar.truncateDateToYearMonthDay(date))
+    let indexPath = NSIndexPath.init(forItem: indexOfDate!, inSection: 0)
+    collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: animated)
   }
   
   public func checkForEndOfDates(scrollView: UIScrollView) {

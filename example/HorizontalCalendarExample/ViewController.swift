@@ -11,9 +11,31 @@ import HorizontalCalendarView
 
 class ViewController: UIViewController, HorizontalCalendarDelegate {
   
+  @IBOutlet weak var interfaceDesignerCalendarView: HorizontalCalendarView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    
+    addCalendarViewWithConstraints()
+    addCustomCalendarViewWithConstraint()
+    
+    interfaceDesignerCalendarView.delegate = self
+    interfaceDesignerCalendarView.moveToDate(NSDate(), animated: true)
+  }
+
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  func horizontalCalendarViewDidUpdate(calendar: HorizontalCalendarView, date: NSDate) {
+    let formatter: NSDateFormatter = NSDateFormatter()
+    formatter.dateFormat = "dd.MM.YYYY"
+    print("Updated calendarView \(formatter.stringFromDate(date))")
+  }
+  
+  func addCalendarViewWithConstraints() {
     let calendarView = HorizontalCalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80.0))
     calendarView.translatesAutoresizingMaskIntoConstraints = false
     calendarView.delegate = self
@@ -31,8 +53,10 @@ class ViewController: UIViewController, HorizontalCalendarDelegate {
     let trailingConstraint = NSLayoutConstraint(item: calendarView, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
     view.addConstraint(trailingConstraint)
     
-    
-    //calendar with custom cell
+    calendarView.moveToDate(NSDate(), animated: true)
+  }
+  
+  func addCustomCalendarViewWithConstraint() {
     let customCalendarView = HorizontalCalendarView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100.0), cellWidth: 80, cellClass: MyCustomCalendarCell.self)
     customCalendarView.translatesAutoresizingMaskIntoConstraints = false
     customCalendarView.delegate = self
@@ -50,18 +74,8 @@ class ViewController: UIViewController, HorizontalCalendarDelegate {
     
     let customTrailingConstraint = NSLayoutConstraint(item: customCalendarView, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
     view.addConstraint(customTrailingConstraint)
+    
+    customCalendarView.moveToDate(NSDate(), animated: true)
   }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
-  func horizontalCalendarViewDidUpdate(calendar: HorizontalCalendarView, date: NSDate) {
-    let formatter: NSDateFormatter = NSDateFormatter()
-    formatter.dateFormat = "dd.MM.YYYY"
-    print("Updated calendarView \(formatter.stringFromDate(date))")
-  }
-  
 }
 
