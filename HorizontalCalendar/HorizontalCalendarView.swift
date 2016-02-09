@@ -18,7 +18,7 @@ public class HorizontalCalendarView: UIView {
   public var minimumInterItemSpacing : CGFloat = 0.0
   
   var dates : [NSDate] = []
-  var displayesYears : [Int] = []
+  var displayedYears : [Int] = []
   var startingYear : Int?
   var cellWidth : CGFloat = 80
   var activeIndexPath : NSIndexPath?
@@ -83,27 +83,29 @@ public class HorizontalCalendarView: UIView {
     startingYear = horizontalCalendar.currentYear()
     if let year = startingYear {
       dates = horizontalCalendar.datesForYear(year)
-      displayesYears.append(year)
+      displayedYears.append(year)
     }
   }
   
   func addDatesFromYear(year: Int) {
-    if displayesYears.contains(year) {
+    if displayedYears.contains(year) {
       return
     }
     
-    let test = dates[(activeIndexPath?.row)!]
-    
-    if year > startingYear {
-      dates.appendContentsOf(horizontalCalendar.datesForYear(year))
-    } else if (year < startingYear) {
-      let newDates = horizontalCalendar.datesForYear(year)
-      dates.insertContentsOf(newDates, at: 0)
+    if let indexPath = activeIndexPath {
+      let test = dates[indexPath.row]
+      
+      if year > startingYear {
+        dates.appendContentsOf(horizontalCalendar.datesForYear(year))
+      } else if (year < startingYear) {
+        let newDates = horizontalCalendar.datesForYear(year)
+        dates.insertContentsOf(newDates, at: 0)
+      }
+      
+      displayedYears.append(year)
+      collectionView?.reloadData()
+      moveToDate(test, animated: false)
     }
-    
-    displayesYears.append(year)
-    collectionView?.reloadData()
-    moveToDate(test, animated: false)
   }
   
   func updateActiveIndexPath(indexPath : NSIndexPath) {
@@ -123,7 +125,7 @@ public class HorizontalCalendarView: UIView {
   
   public func checkForEndOfDates(scrollView: UIScrollView) {
     if scrollView.contentOffset.x < cellWidth {
-      let minYearDisplayed = displayesYears.minElement();
+      let minYearDisplayed = displayedYears.minElement();
       if let lastYear = minYearDisplayed {
         addDatesFromYear(lastYear - 1)
       }
@@ -135,7 +137,7 @@ public class HorizontalCalendarView: UIView {
     let offsetToLoadMore = maxScrollviewOffset - cellWidth
     
     if scrollView.contentOffset.x > offsetToLoadMore {
-      let minYearDisplayed = displayesYears.maxElement();
+      let minYearDisplayed = displayedYears.maxElement();
       if let lastYear = minYearDisplayed {
         addDatesFromYear(lastYear + 1)
       }
