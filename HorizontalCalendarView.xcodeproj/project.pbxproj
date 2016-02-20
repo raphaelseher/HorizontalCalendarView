@@ -18,6 +18,8 @@
 		886B17C21C329DD800167050 /* CalendarFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886B17C11C329DD800167050 /* CalendarFlowLayout.swift */; };
 		886B17C71C32B6A600167050 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886B17C51C32B6A600167050 /* CalendarCollectionViewCell.swift */; };
 		886B17C81C32B6A600167050 /* CalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886B17C61C32B6A600167050 /* CalendarCollectionViewCell.xib */; };
+		889325B51C78D04D00982197 /* SpyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889325B41C78D04D00982197 /* SpyDelegate.swift */; };
+		889325B71C78EFF600982197 /* CalendarFlowLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889325B61C78EFF600982197 /* CalendarFlowLayoutTests.swift */; };
 		88FEA9A21C56A66D00018B5A /* HorizontalCalendar.swift in Headers */ = {isa = PBXBuildFile; fileRef = 8839E6591C30200F0008FB49 /* HorizontalCalendar.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		88FEA9A31C56A66D00018B5A /* CalendarFlowLayout.swift in Headers */ = {isa = PBXBuildFile; fileRef = 886B17C11C329DD800167050 /* CalendarFlowLayout.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		88FEA9A41C56A66D00018B5A /* CalendarCollectionViewCell.swift in Headers */ = {isa = PBXBuildFile; fileRef = 886B17C51C32B6A600167050 /* CalendarCollectionViewCell.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +53,8 @@
 		886B17C11C329DD800167050 /* CalendarFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarFlowLayout.swift; sourceTree = "<group>"; };
 		886B17C51C32B6A600167050 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		886B17C61C32B6A600167050 /* CalendarCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarCollectionViewCell.xib; sourceTree = "<group>"; };
+		889325B41C78D04D00982197 /* SpyDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyDelegate.swift; sourceTree = "<group>"; };
+		889325B61C78EFF600982197 /* CalendarFlowLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarFlowLayoutTests.swift; sourceTree = "<group>"; };
 		88FEA9A71C56A6A000018B5A /* HorizontalCalendarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalCalendarDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +83,8 @@
 				8813C8E01C57FB3A0019B498 /* Info.plist */,
 				8813C8DE1C57FB3A0019B498 /* HorizontalCalendarViewTests.swift */,
 				8813C8E71C57FB660019B498 /* HorizontalCalendarTests.swift */,
+				889325B61C78EFF600982197 /* CalendarFlowLayoutTests.swift */,
+				889325B41C78D04D00982197 /* SpyDelegate.swift */,
 			);
 			path = HorizontalCalendarViewTests;
 			sourceTree = "<group>";
@@ -237,6 +243,8 @@
 			files = (
 				8813C8DF1C57FB3A0019B498 /* HorizontalCalendarViewTests.swift in Sources */,
 				8813C8E81C57FB660019B498 /* HorizontalCalendarTests.swift in Sources */,
+				889325B51C78D04D00982197 /* SpyDelegate.swift in Sources */,
+				889325B71C78EFF600982197 /* CalendarFlowLayoutTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +425,7 @@
 				8813C8E61C57FB3A0019B498 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8839E6351C2FD5640008FB49 /* Build configuration list for PBXProject "HorizontalCalendarView" */ = {
 			isa = XCConfigurationList;

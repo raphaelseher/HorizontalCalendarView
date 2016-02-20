@@ -93,7 +93,7 @@ public class HorizontalCalendarView: UIView {
     }
     
     if let indexPath = activeIndexPath {
-      let test = dates[indexPath.row]
+      let currentDate = dates[indexPath.row]
       
       if year > startingYear {
         dates.appendContentsOf(horizontalCalendar.datesForYear(year))
@@ -104,7 +104,7 @@ public class HorizontalCalendarView: UIView {
       
       displayedYears.append(year)
       collectionView?.reloadData()
-      moveToDate(test, animated: false)
+      moveToDate(currentDate, animated: false)
     }
   }
   
@@ -128,6 +128,7 @@ public class HorizontalCalendarView: UIView {
       let minYearDisplayed = displayedYears.minElement();
       if let lastYear = minYearDisplayed {
         addDatesFromYear(lastYear - 1)
+        return;
       }
     }
     
