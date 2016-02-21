@@ -28,6 +28,11 @@ public class HorizontalCalendarView: UIView {
   var collectionViewLeadingConstraint : NSLayoutConstraint?
   var collectionViewTrailingConstraint : NSLayoutConstraint?
   
+  /**
+   Create a instance of HorizontalCalendarView with rect.
+   
+   - Parameter frame: CGRect for frame.
+   */
   public override init(frame: CGRect) {
     super.init(frame: frame)
     collectionView = UICollectionView(frame: CGRect(origin: CGPoint.zero, size: frame.size), collectionViewLayout: CalendarFlowLayout(cellWidth: CGFloat(cellWidth)))
@@ -36,6 +41,14 @@ public class HorizontalCalendarView: UIView {
     setupYears()
   }
   
+  /**
+   Create a instance of HorizontalCalendarView with rect, 
+   the cellWidth and a custom nib.
+   
+   - Parameter frame: CGRect for frame.
+   - Parameter cellWidth: Width of your custom cell.
+   - Parameter cellNib: Nib of your custom cell.
+   */
   public init(frame: CGRect, cellWidth: Float, cellNib: UINib) {
     super.init(frame: frame)
     collectionView = UICollectionView(frame: CGRect(origin: CGPoint.zero, size: frame.size), collectionViewLayout: CalendarFlowLayout(cellWidth: CGFloat(cellWidth)))
@@ -44,6 +57,14 @@ public class HorizontalCalendarView: UIView {
     setupYears()
   }
   
+  /**
+   Create a instance of HorizontalCalendarView with rect,
+   the cellWidth and a custom class.
+   
+   - Parameter frame: CGRect for frame.
+   - Parameter cellWidth: Width of your custom cell.
+   - Parameter cellClass: Class of your custom cell.
+   */
   public init(frame: CGRect, cellWidth: Float, cellClass: AnyClass) {
     super.init(frame: frame)
     collectionView = UICollectionView(frame: CGRect(origin: CGPoint.zero, size: frame.size), collectionViewLayout: CalendarFlowLayout(cellWidth: CGFloat(cellWidth)))
@@ -52,6 +73,11 @@ public class HorizontalCalendarView: UIView {
     setupYears()
   }
   
+  /**
+   Create a instance of HorizontalCalendarView with coder.
+   
+   - Parameter aDecoder: A coder.
+   */
   required public init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     collectionView = UICollectionView(coder: aDecoder)!
