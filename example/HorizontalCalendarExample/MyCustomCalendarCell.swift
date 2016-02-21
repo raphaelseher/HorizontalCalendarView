@@ -14,8 +14,8 @@ class MyCustomCalendarCell: UICollectionViewCell {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    label = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
-    label!.backgroundColor = UIColor.blackColor()
+    label = UILabel(frame: CGRect(x: 0, y: frame.size.height/2 - 10, width: 80, height: 20))
+    label?.textAlignment = .Center
     addSubview(label!)
   }
 
@@ -26,9 +26,15 @@ class MyCustomCalendarCell: UICollectionViewCell {
   override func configureCalendarCell(cell: UICollectionViewCell, date: NSDate, active: Bool) -> UICollectionViewCell {
     let dateFormatter = NSDateFormatter()
     dateFormatter.dateFormat = "d.MM"
-    cell.backgroundColor = UIColor.blueColor()
     label!.text = dateFormatter.stringFromDate(date)
     label!.textColor = UIColor.whiteColor()
+    
+    if (active) {
+      cell.backgroundColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.8)
+    } else {
+      cell.backgroundColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.4)
+    }
+    
     return cell;
   }
 }
