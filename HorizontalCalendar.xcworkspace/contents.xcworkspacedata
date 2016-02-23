@@ -7,4 +7,13 @@
    <FileRef
       location = "group:/Users/raphaelseher/dev/private/HorizontalCalendar/HorizontalCalendarView.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Example/HorizontalCalendarExample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:HorizontalCalendarView.xcodeproj">
+   </FileRef>
 </Workspace>

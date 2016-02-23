@@ -1,0 +1,6 @@
+framework module HorizontalCalendarView {
+  umbrella header "HorizontalCalendarView-umbrella.h"
+
+  export *
+  module * { export * }
+}

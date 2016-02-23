@@ -1,0 +1,14 @@
+PODS:
+  - HorizontalCalendarView (0.0.1)
+
+DEPENDENCIES:
+  - HorizontalCalendarView (from `.`)
+
+EXTERNAL SOURCES:
+  HorizontalCalendarView:
+    :path: "."
+
+SPEC CHECKSUMS:
+  HorizontalCalendarView: 3eaa716c0d0b45c18e695481e12385b4b567fd76
+
+COCOAPODS: 0.39.0
