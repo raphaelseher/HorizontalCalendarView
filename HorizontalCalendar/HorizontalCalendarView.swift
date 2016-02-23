@@ -150,7 +150,7 @@ public class HorizontalCalendarView: UIView {
   }
   
   public func checkForEndOfDates(scrollView: UIScrollView) {
-    if scrollView.contentOffset.x < cellWidth {
+    if scrollView.contentOffset.x < 60 * cellWidth {
       let minYearDisplayed = displayedYears.minElement();
       if let lastYear = minYearDisplayed {
         addDatesFromYear(lastYear - 1)
@@ -161,7 +161,7 @@ public class HorizontalCalendarView: UIView {
     let maxLinespacing = (self.mininumLineSpacing * CGFloat(dates.count - 1))
     let maxDateSize = cellWidth * CGFloat(dates.count) + maxLinespacing
     let maxScrollviewOffset = maxDateSize - collectionView!.bounds.size.width
-    let offsetToLoadMore = maxScrollviewOffset - cellWidth
+    let offsetToLoadMore = maxScrollviewOffset - 60 * cellWidth
     
     if scrollView.contentOffset.x > offsetToLoadMore {
       let minYearDisplayed = displayedYears.maxElement();
@@ -215,7 +215,14 @@ extension HorizontalCalendarView : UIScrollViewDelegate {
     if let indexPath = collectionView?.indexPathForItemAtPoint(CGPoint(x: collectionView!.center.x + scrollView.contentOffset.x, y: collectionView!.center.y)) {
       updateActiveIndexPath(indexPath)
     }
-    
+  }
+  
+  public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    checkForEndOfDates(scrollView)
+  }
+  
+  public func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
     checkForEndOfDates(scrollView)
   }
 }
+

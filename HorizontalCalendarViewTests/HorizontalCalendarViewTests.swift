@@ -179,7 +179,30 @@ class HorizontalCalendarViewTests: XCTestCase {
     calendar.scrollViewDidScroll(scrollView)
     
     XCTAssertNotNil(calendar.activeIndexPath)
-    XCTAssertEqual(calendar.displayedYears.count, 2)
+  }
+  
+  func testThatLoadMoreWhenEndDragging() {
+    let calendar = HorizontalCalendarView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    let scrollView = UIScrollView()
+    scrollView.contentOffset = CGPoint(x: 10, y: 0)
+    
+    calendar.scrollViewDidScroll(scrollView)
+    calendar.scrollViewDidEndDragging(scrollView, willDecelerate: true)
+
+    XCTAssertTrue(calendar.dates.count > 600)
+    XCTAssertTrue(calendar.displayedYears.count == 2)
+  }
+  
+  func testThatLoadMoreWhenEndDecelerating() {
+    let calendar = HorizontalCalendarView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    let scrollView = UIScrollView()
+    scrollView.contentOffset = CGPoint(x: 10, y: 0)
+    
+    calendar.scrollViewDidScroll(scrollView)
+    calendar.scrollViewDidEndDecelerating(scrollView)
+    
+    XCTAssertTrue(calendar.dates.count > 600)
+    XCTAssertTrue(calendar.displayedYears.count == 2)
   }
   
 }
