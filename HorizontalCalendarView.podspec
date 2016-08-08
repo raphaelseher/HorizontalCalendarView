@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "HorizontalCalendarView"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "A horizontal scrolling calendar."
   s.description  = <<-DESC
   Custom UIView with an UICollectionView as calendar.
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios
   s.platform     = :ios, "8.0"
 
-  s.source       = { :git => "https://github.com/raphaelseher/HorizontalCalendarView.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/raphaelseher/HorizontalCalendarView.git", :tag => "0.0.2" }
   s.source_files  = "HorizontalCalendar", "HorizontalCalendar/**/*.{h,m,swift}"
   s.resources = "HorizontalCalendar/*.xib", "HorizontalCalendar/*.xcassets"
 
