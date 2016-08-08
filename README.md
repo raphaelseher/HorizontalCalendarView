@@ -4,6 +4,12 @@ Small horizontal calendar written in Swift.
 
 ![](https://github.com/raphaelseher/HorizontalCalendarView/blob/master/calendar.gif)
 
+## Install via cocoapods
+
+````ruby
+pod 'HorizontalCalendarView'
+```
+
 ## Usage
 
 1.) Import module
