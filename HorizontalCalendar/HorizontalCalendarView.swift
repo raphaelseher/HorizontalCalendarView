@@ -51,7 +51,8 @@ public class HorizontalCalendarView: UIView {
    */
   public init(frame: CGRect, cellWidth: Float, cellNib: UINib) {
     super.init(frame: frame)
-    collectionView = UICollectionView(frame: CGRect(origin: CGPoint.zero, size: frame.size), collectionViewLayout: CalendarFlowLayout(cellWidth: CGFloat(cellWidth)))
+    self.cellWidth = CGFloat(cellWidth)
+    collectionView = UICollectionView(frame: CGRect(origin: CGPoint.zero, size: frame.size), collectionViewLayout: CalendarFlowLayout(cellWidth: self.cellWidth))
     collectionView!.registerNib(cellNib, forCellWithReuseIdentifier: cellReuseIdentifier)
     setupCollectionView()
     setupYears()
@@ -67,7 +68,8 @@ public class HorizontalCalendarView: UIView {
    */
   public init(frame: CGRect, cellWidth: Float, cellClass: AnyClass) {
     super.init(frame: frame)
-    collectionView = UICollectionView(frame: CGRect(origin: CGPoint.zero, size: frame.size), collectionViewLayout: CalendarFlowLayout(cellWidth: CGFloat(cellWidth)))
+    self.cellWidth = CGFloat(cellWidth)
+    collectionView = UICollectionView(frame: CGRect(origin: CGPoint.zero, size: frame.size), collectionViewLayout: CalendarFlowLayout(cellWidth: self.cellWidth))
     collectionView!.registerClass(cellClass, forCellWithReuseIdentifier: cellReuseIdentifier)
     setupCollectionView()
     setupYears()
