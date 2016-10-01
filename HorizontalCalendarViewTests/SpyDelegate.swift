@@ -12,14 +12,14 @@ import HorizontalCalendarView
 
 class SpyDelegate: HorizontalCalendarDelegate {
   // Setting .None is unnecessary, but helps with clarity imho
-  var somethingWithDelegateAsyncResult: NSDate?
+  var somethingWithDelegateAsyncResult: Date?
   
   // Async test code needs to fulfill the XCTestExpecation used for the test
   // when all the async operations have been completed. For this reason we need
   // to store a reference to the expectation
   var asyncExpectation: XCTestExpectation?
   
-  func horizontalCalendarViewDidUpdate(calendar: HorizontalCalendarView, date: NSDate) {
+  func horizontalCalendarViewDidUpdate(_ calendar: HorizontalCalendarView, date: Date) {
     guard let expectation = asyncExpectation else {
       XCTFail("SpyDelegate was not setup correctly. Missing XCTExpectation reference")
       return

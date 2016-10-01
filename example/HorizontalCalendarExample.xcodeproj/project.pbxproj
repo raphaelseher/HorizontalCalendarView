@@ -129,12 +129,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 881239D11C39521300AF44F9 /* Build configuration list for PBXNativeTarget "HorizontalCalendarExample" */;
 			buildPhases = (
-				59C9513E17A96943F884F238 /* 📦 Check Pods Manifest.lock */,
+				59C9513E17A96943F884F238 /* [CP] Check Pods Manifest.lock */,
 				881239BB1C39521200AF44F9 /* Sources */,
 				881239BC1C39521200AF44F9 /* Frameworks */,
 				881239BD1C39521200AF44F9 /* Resources */,
-				C65E5CEC772EC71BF6D12981 /* 📦 Embed Pods Frameworks */,
-				181D38F85FB6FCE0E77421C0 /* 📦 Copy Pods Resources */,
+				C65E5CEC772EC71BF6D12981 /* [CP] Embed Pods Frameworks */,
+				181D38F85FB6FCE0E77421C0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -175,9 +175,11 @@
 				TargetAttributes = {
 					881239BE1C39521200AF44F9 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					8813C8CD1C57FB220019B498 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = 881239BE1C39521200AF44F9;
 					};
 				};
@@ -221,14 +223,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		181D38F85FB6FCE0E77421C0 /* 📦 Copy Pods Resources */ = {
+		181D38F85FB6FCE0E77421C0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,14 +238,14 @@
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-HorizontalCalendarExample/Pods-HorizontalCalendarExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		59C9513E17A96943F884F238 /* 📦 Check Pods Manifest.lock */ = {
+		59C9513E17A96943F884F238 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,14 +253,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C65E5CEC772EC71BF6D12981 /* 📦 Embed Pods Frameworks */ = {
+		C65E5CEC772EC71BF6D12981 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +412,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = at.raphaelseher.HorizontalCalendarExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -423,6 +426,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = at.raphaelseher.HorizontalCalendarExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -434,6 +438,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = at.raphaelseher.HorizontalCalendarExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HorizontalCalendarExample.app/HorizontalCalendarExample";
 			};
 			name = Debug;
@@ -446,6 +451,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = at.raphaelseher.HorizontalCalendarExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HorizontalCalendarExample.app/HorizontalCalendarExample";
 			};
 			name = Release;

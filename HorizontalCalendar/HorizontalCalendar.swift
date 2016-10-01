@@ -8,45 +8,45 @@
 
 import UIKit
 
-public class HorizontalCalendar: NSObject {
-  let calendar : NSCalendar!
+open class HorizontalCalendar: NSObject {
+  let calendar : Calendar!
   
   override init() {
-    calendar = NSCalendar.currentCalendar()
-  }
-  
-  func currentYear() -> Int {
-    let components = calendar.components(NSCalendarUnit.Year, fromDate: NSDate())
-    return components.year
+    calendar = Calendar.current
   }
 
-  func firstDayInYear(year: Int) -> NSDate {
-    let dateComponents : NSDateComponents = NSDateComponents()
+  func currentYear() -> Int {
+    let components = calendar.dateComponents([.year], from: Date())
+    return components.year!
+  }
+
+  func firstDayInYear(_ year: Int) -> Date {
+    var dateComponents : DateComponents = DateComponents()
     dateComponents.day = 1
     dateComponents.month = 1
     dateComponents.year = year
-    return calendar.dateFromComponents(dateComponents)!
+    return calendar.date(from: dateComponents)!
   }
   
-  func datesForYear(year: Int) -> [NSDate] {
+  func datesForYear(_ year: Int) -> [Date] {
     let firstDateOfNextYear = firstDayInYear(year + 1)
     var date = firstDayInYear(year)
-    let OneDayDateComponents = NSDateComponents()
+    var OneDayDateComponents = DateComponents()
     OneDayDateComponents.day = 1
     
-    var dates : [NSDate] = []
+    var dates : [Date] = []
     
-    while (!date.isEqualToDate(firstDateOfNextYear)) {
+    while (date != firstDateOfNextYear) {
       dates.append(date)
-      date = calendar.dateByAddingComponents(OneDayDateComponents, toDate: date, options: .MatchFirst)!
+      date = calendar.date(byAdding: OneDayDateComponents, to: date)!
     }
     
     return dates;
   }
   
-  func truncateDateToYearMonthDay(date: NSDate) -> NSDate {
-    let dateComponents = calendar.components([.Year, .Month, .Day], fromDate: date)
-    return calendar.dateFromComponents(dateComponents)!
+  func truncateDateToYearMonthDay(_ date: Date) -> Date {
+    let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+    return calendar.date(from: dateComponents)!
   }
   
 }

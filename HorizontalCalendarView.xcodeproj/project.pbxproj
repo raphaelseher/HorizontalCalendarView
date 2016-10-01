@@ -181,12 +181,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8813C8E41C57FB3A0019B498 /* Build configuration list for PBXNativeTarget "HorizontalCalendarViewTests" */;
 			buildPhases = (
-				5F9CAB8897BFC0CE45439EA4 /* 📦 Check Pods Manifest.lock */,
+				5F9CAB8897BFC0CE45439EA4 /* [CP] Check Pods Manifest.lock */,
 				8813C8D81C57FB3A0019B498 /* Sources */,
 				8813C8D91C57FB3A0019B498 /* Frameworks */,
 				8813C8DA1C57FB3A0019B498 /* Resources */,
-				CC8660A9B113B7B39D30A51A /* 📦 Embed Pods Frameworks */,
-				0D096B1F8989B47DAEE6C7F8 /* 📦 Copy Pods Resources */,
+				CC8660A9B113B7B39D30A51A /* [CP] Embed Pods Frameworks */,
+				0D096B1F8989B47DAEE6C7F8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,12 +202,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8839E64F1C2FD5640008FB49 /* Build configuration list for PBXNativeTarget "HorizontalCalendarView" */;
 			buildPhases = (
-				6453DBEC1EF92491AB81F868 /* 📦 Check Pods Manifest.lock */,
+				6453DBEC1EF92491AB81F868 /* [CP] Check Pods Manifest.lock */,
 				8839E6361C2FD5640008FB49 /* Sources */,
 				8839E6371C2FD5640008FB49 /* Frameworks */,
 				8839E6381C2FD5640008FB49 /* Headers */,
 				8839E6391C2FD5640008FB49 /* Resources */,
-				743927C3B741CABF2B1A8906 /* 📦 Copy Pods Resources */,
+				743927C3B741CABF2B1A8906 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,9 +230,11 @@
 				TargetAttributes = {
 					8813C8DB1C57FB3A0019B498 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					8839E63A1C2FD5640008FB49 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -274,14 +276,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D096B1F8989B47DAEE6C7F8 /* 📦 Copy Pods Resources */ = {
+		0D096B1F8989B47DAEE6C7F8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,14 +291,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HorizontalCalendarViewTests/Pods-HorizontalCalendarViewTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5F9CAB8897BFC0CE45439EA4 /* 📦 Check Pods Manifest.lock */ = {
+		5F9CAB8897BFC0CE45439EA4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,14 +306,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		6453DBEC1EF92491AB81F868 /* 📦 Check Pods Manifest.lock */ = {
+		6453DBEC1EF92491AB81F868 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,14 +321,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		743927C3B741CABF2B1A8906 /* 📦 Copy Pods Resources */ = {
+		743927C3B741CABF2B1A8906 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,14 +336,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HorizontalCalendarView/Pods-HorizontalCalendarView-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CC8660A9B113B7B39D30A51A /* 📦 Embed Pods Frameworks */ = {
+		CC8660A9B113B7B39D30A51A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +396,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = at.raphaelseher.HorizontalCalendarViewTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -405,6 +408,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = at.raphaelseher.HorizontalCalendarViewTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -513,6 +517,7 @@
 				PRODUCT_NAME = HorizontalCalendarView;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -531,6 +536,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = at.raphaelseher.HorizontalCalendar;
 				PRODUCT_NAME = HorizontalCalendarView;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

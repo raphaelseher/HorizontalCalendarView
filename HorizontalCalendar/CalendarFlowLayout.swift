@@ -15,14 +15,14 @@ class CalendarFlowLayout: UICollectionViewFlowLayout {
   convenience init(cellWidth : CGFloat) {
     self.init()
     self.cellWidth = cellWidth
-    self.scrollDirection = .Horizontal
+    self.scrollDirection = .horizontal
   }
   
-  override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+  override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
     var offsetAdjustment : CGFloat = CGFloat(MAXFLOAT)
     let horizontalOffset = proposedContentOffset.x + calculateOffset()
     let targetRect = CGRect(x: proposedContentOffset.x, y: 0, width: (collectionView?.bounds.size.width)!, height: (collectionView?.bounds.height)!)
-    let array = super.layoutAttributesForElementsInRect(targetRect)
+    let array = super.layoutAttributesForElements(in: targetRect)
     
     for layoutAttributes in array! {
       let itemOffset = layoutAttributes.frame.origin.x
