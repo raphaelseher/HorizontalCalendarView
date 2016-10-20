@@ -7,21 +7,41 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-public class HorizontalCalendarView: UIView {
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
+open class HorizontalCalendarView: UIView {
   let cellReuseIdentifier = "CalendarCellReuseIdentifier"
   let horizontalCalendar = HorizontalCalendar()
   
-  public var delegate : HorizontalCalendarDelegate?
-  public var collectionView : UICollectionView?
-  public var mininumLineSpacing : CGFloat = 0.0
-  public var minimumInterItemSpacing : CGFloat = 0.0
+  open var delegate : HorizontalCalendarDelegate?
+  open var collectionView : UICollectionView?
+  open var mininumLineSpacing : CGFloat = 0.0
+  open var minimumInterItemSpacing : CGFloat = 0.0
   
-  var dates : [NSDate] = []
+  var dates : [Date] = []
   var displayedYears : [Int] = []
   var startingYear : Int?
   var cellWidth : CGFloat = 80
-  var activeIndexPath : NSIndexPath?
+  var activeIndexPath : IndexPath?
   
   var collectionViewTopConstraint : NSLayoutConstraint?
   var collectionViewBottomConstraint : NSLayoutConstraint?
@@ -36,7 +56,7 @@ public class HorizontalCalendarView: UIView {
   public override init(frame: CGRect) {
     super.init(frame: frame)
     collectionView = UICollectionView(frame: CGRect(origin: CGPoint.zero, size: frame.size), collectionViewLayout: CalendarFlowLayout(cellWidth: CGFloat(cellWidth)))
-    collectionView!.registerNib(UINib(nibName: "CalendarCollectionViewCell", bundle: NSBundle(forClass: HorizontalCalendarView.self)), forCellWithReuseIdentifier: cellReuseIdentifier)
+    collectionView!.register(UINib(nibName: "CalendarCollectionViewCell", bundle: Bundle(for: HorizontalCalendarView.self)), forCellWithReuseIdentifier: cellReuseIdentifier)
     setupCollectionView()
     setupYears()
   }
@@ -53,7 +73,7 @@ public class HorizontalCalendarView: UIView {
     super.init(frame: frame)
     self.cellWidth = CGFloat(cellWidth)
     collectionView = UICollectionView(frame: CGRect(origin: CGPoint.zero, size: frame.size), collectionViewLayout: CalendarFlowLayout(cellWidth: self.cellWidth))
-    collectionView!.registerNib(cellNib, forCellWithReuseIdentifier: cellReuseIdentifier)
+    collectionView!.register(cellNib, forCellWithReuseIdentifier: cellReuseIdentifier)
     setupCollectionView()
     setupYears()
   }
@@ -70,7 +90,7 @@ public class HorizontalCalendarView: UIView {
     super.init(frame: frame)
     self.cellWidth = CGFloat(cellWidth)
     collectionView = UICollectionView(frame: CGRect(origin: CGPoint.zero, size: frame.size), collectionViewLayout: CalendarFlowLayout(cellWidth: self.cellWidth))
-    collectionView!.registerClass(cellClass, forCellWithReuseIdentifier: cellReuseIdentifier)
+    collectionView!.register(cellClass, forCellWithReuseIdentifier: cellReuseIdentifier)
     setupCollectionView()
     setupYears()
   }
@@ -84,14 +104,14 @@ public class HorizontalCalendarView: UIView {
     super.init(coder: aDecoder)
     collectionView = UICollectionView(coder: aDecoder)!
     collectionView!.collectionViewLayout = CalendarFlowLayout(cellWidth: CGFloat(cellWidth))
-    collectionView!.registerNib(UINib(nibName: "CalendarCollectionViewCell", bundle: NSBundle(forClass: HorizontalCalendarView.self)), forCellWithReuseIdentifier: cellReuseIdentifier)
+    collectionView!.register(UINib(nibName: "CalendarCollectionViewCell", bundle: Bundle(for: HorizontalCalendarView.self)), forCellWithReuseIdentifier: cellReuseIdentifier)
     setupCollectionView()
     setupYears()
   }
   
   func setupCollectionView() {
     if let collectionView = collectionView {
-      collectionView.backgroundColor = UIColor.clearColor()
+      collectionView.backgroundColor = UIColor.clear
       collectionView.delegate = self
       collectionView.dataSource = self
       collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -99,10 +119,10 @@ public class HorizontalCalendarView: UIView {
       
       addSubview(collectionView)
       
-      collectionViewTopConstraint = NSLayoutConstraint(item: collectionView, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: 0)
-      collectionViewBottomConstraint = NSLayoutConstraint(item: collectionView, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: 0)
-      collectionViewLeadingConstraint = NSLayoutConstraint(item: collectionView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: 0)
-      collectionViewTrailingConstraint = NSLayoutConstraint(item: collectionView, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: 0)
+      collectionViewTopConstraint = NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0)
+      collectionViewBottomConstraint = NSLayoutConstraint(item: collectionView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0)
+      collectionViewLeadingConstraint = NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0)
+      collectionViewTrailingConstraint = NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: 0)
       addConstraints([collectionViewTopConstraint!, collectionViewBottomConstraint!, collectionViewLeadingConstraint!, collectionViewTrailingConstraint!])
     }
   }
@@ -115,19 +135,19 @@ public class HorizontalCalendarView: UIView {
     }
   }
   
-  func addDatesFromYear(year: Int) {
+  func addDatesFromYear(_ year: Int) {
     if displayedYears.contains(year) {
       return
     }
     
     if let indexPath = activeIndexPath {
-      let currentDate = dates[indexPath.row]
+      let currentDate = dates[(indexPath as NSIndexPath).row]
       
       if year > startingYear {
-        dates.appendContentsOf(horizontalCalendar.datesForYear(year))
+        dates.append(horizontalCalendar.datesForYear(year).first!)
       } else if (year < startingYear) {
         let newDates = horizontalCalendar.datesForYear(year)
-        dates.insertContentsOf(newDates, at: 0)
+        dates.insert(contentsOf: newDates, at: 0)
       }
       
       displayedYears.append(year)
@@ -136,24 +156,24 @@ public class HorizontalCalendarView: UIView {
     }
   }
   
-  func updateActiveIndexPath(indexPath : NSIndexPath) {
+  func updateActiveIndexPath(_ indexPath : IndexPath) {
     if activeIndexPath != indexPath {
       activeIndexPath = indexPath
       collectionView?.reloadData()
       
-      delegate?.horizontalCalendarViewDidUpdate(self, date: dates[indexPath.row])
+      delegate?.horizontalCalendarViewDidUpdate(self, date: dates[(indexPath as NSIndexPath).row])
     }
   }
   
-  public func moveToDate(date : NSDate, animated : Bool) {
-    let indexOfDate = dates.indexOf(horizontalCalendar.truncateDateToYearMonthDay(date))
-    let indexPath = NSIndexPath.init(forItem: indexOfDate!, inSection: 0)
-    collectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: animated)
+  open func moveToDate(_ date : Date, animated : Bool) {
+    let indexOfDate = dates.index(of: horizontalCalendar.truncateDateToYearMonthDay(date))
+    let indexPath = IndexPath.init(item: indexOfDate!, section: 0)
+    collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: animated)
   }
   
-  public func checkForEndOfDates(scrollView: UIScrollView) {
+  open func checkForEndOfDates(_ scrollView: UIScrollView) {
     if scrollView.contentOffset.x < 60 * cellWidth {
-      let minYearDisplayed = displayedYears.minElement();
+      let minYearDisplayed = displayedYears.min();
       if let lastYear = minYearDisplayed {
         addDatesFromYear(lastYear - 1)
         return;
@@ -166,7 +186,7 @@ public class HorizontalCalendarView: UIView {
     let offsetToLoadMore = maxScrollviewOffset - 60 * cellWidth
     
     if scrollView.contentOffset.x > offsetToLoadMore {
-      let minYearDisplayed = displayedYears.maxElement();
+      let minYearDisplayed = displayedYears.max();
       if let lastYear = minYearDisplayed {
         addDatesFromYear(lastYear + 1)
       }
@@ -175,13 +195,13 @@ public class HorizontalCalendarView: UIView {
 }
 
 extension HorizontalCalendarView : UICollectionViewDelegate {
-  func collectionView(collectionView: UICollectionView,
+  func collectionView(_ collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
     minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
       return mininumLineSpacing;
   }
   
-  func collectionView(collectionView: UICollectionView,
+  func collectionView(_ collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
     minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
       return minimumInterItemSpacing;
@@ -189,41 +209,41 @@ extension HorizontalCalendarView : UICollectionViewDelegate {
 }
 
 extension HorizontalCalendarView : UICollectionViewDataSource {
-  public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+  public func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
   }
   
-  public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return dates.count
   }
   
-  public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
-    cell.configureCalendarCell(cell, date: dates[indexPath.row], active: (indexPath == activeIndexPath))
+  public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath)
+    cell.configureCalendarCell(cell, date: dates[(indexPath as NSIndexPath).row], active: (indexPath == activeIndexPath))
     return cell
   }
   
-  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
     return CGSize(width: cellWidth, height: collectionView.bounds.height)
   }
   
-  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
     return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
   }
 }
 
 extension HorizontalCalendarView : UIScrollViewDelegate {
-  public func scrollViewDidScroll(scrollView: UIScrollView) {
-    if let indexPath = collectionView?.indexPathForItemAtPoint(CGPoint(x: collectionView!.center.x + scrollView.contentOffset.x, y: collectionView!.center.y)) {
+  public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    if let indexPath = collectionView?.indexPathForItem(at: CGPoint(x: collectionView!.center.x + scrollView.contentOffset.x, y: collectionView!.center.y)) {
       updateActiveIndexPath(indexPath)
     }
   }
   
-  public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+  public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     checkForEndOfDates(scrollView)
   }
   
-  public func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+  public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
     checkForEndOfDates(scrollView)
   }
 }

@@ -22,7 +22,7 @@ class HorizontalCalendarViewTests: XCTestCase {
   }
   
   func testInitWithFrame() {
-    let calendar = HorizontalCalendarView.init(frame: CGRectZero)
+    let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
     
     XCTAssertNotNil(calendar.collectionView)
     XCTAssertEqual(calendar.startingYear, 2016)
@@ -43,7 +43,7 @@ class HorizontalCalendarViewTests: XCTestCase {
   }
   
   func testInitWithCoder() {
-    let coder = NSKeyedUnarchiver(forReadingWithData: NSMutableData())
+    let coder = NSKeyedUnarchiver(forReadingWith: NSMutableData() as Data)
     let calendar = HorizontalCalendarView.init(coder: coder)
     
     XCTAssertNotNil(calendar)
@@ -56,7 +56,7 @@ class HorizontalCalendarViewTests: XCTestCase {
   
   func testAddDatesFromPreviousYear() {
     let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
-    calendar.activeIndexPath = NSIndexPath(forItem: 1, inSection: 1)
+    calendar.activeIndexPath = IndexPath(item: 1, section: 1)
     calendar.addDatesFromYear(2015)
     
     XCTAssertEqual(calendar.displayedYears.count, 2)
@@ -65,7 +65,7 @@ class HorizontalCalendarViewTests: XCTestCase {
   
   func testAddDatesFromNextYear() {
     let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
-    calendar.activeIndexPath = NSIndexPath(forItem: 1, inSection: 1)
+    calendar.activeIndexPath = IndexPath(item: 1, section: 1)
     calendar.addDatesFromYear(2017)
     
     XCTAssertEqual(calendar.displayedYears.count, 2)
@@ -74,7 +74,7 @@ class HorizontalCalendarViewTests: XCTestCase {
   
   func testAddDatesFromCurrentYear() {
     let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
-    calendar.activeIndexPath = NSIndexPath(forItem: 1, inSection: 1)
+    calendar.activeIndexPath = IndexPath(item: 1, section: 1)
     calendar.addDatesFromYear(2016)
     
     XCTAssertEqual(calendar.displayedYears.count, 1)
@@ -82,8 +82,8 @@ class HorizontalCalendarViewTests: XCTestCase {
   }
   
   func testUpdateActiveIndexPath() {
-    let calendar = HorizontalCalendarView.init(frame: CGRectZero)
-    let indexPath = NSIndexPath(index: 0)
+    let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
+    let indexPath = IndexPath(index: 0)
     
     calendar.updateActiveIndexPath(indexPath)
     
@@ -91,10 +91,10 @@ class HorizontalCalendarViewTests: XCTestCase {
   }
   
   func testCheckForEndOfDatesBefore() {
-    let calendar = HorizontalCalendarView.init(frame: CGRectZero)
+    let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
     let scrollView = UIScrollView()
     scrollView.contentOffset = CGPoint(x: 0,y: 0)
-    calendar.activeIndexPath = NSIndexPath(forRow: 1, inSection: 0)
+    calendar.activeIndexPath = IndexPath(row: 1, section: 0)
     
     calendar.checkForEndOfDates(scrollView)
     
@@ -103,10 +103,10 @@ class HorizontalCalendarViewTests: XCTestCase {
   }
   
   func testCheckForEndOfDatesAfter() {
-    let calendar = HorizontalCalendarView.init(frame: CGRectZero)
+    let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
     let scrollView = UIScrollView()
     scrollView.contentOffset = CGPoint(x: 30000,y: 0)
-    calendar.activeIndexPath = NSIndexPath(forRow: 365, inSection: 0)
+    calendar.activeIndexPath = IndexPath(row: 365, section: 0)
     
     calendar.checkForEndOfDates(scrollView)
     
@@ -115,7 +115,7 @@ class HorizontalCalendarViewTests: XCTestCase {
   }
   
   func testLineSpacing() {
-    let calendar = HorizontalCalendarView.init(frame: CGRectZero)
+    let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
     
     let spacing = calendar.collectionView(calendar.collectionView!, layout: (calendar.collectionView?.collectionViewLayout)!, minimumLineSpacingForSectionAtIndex: 1)
     
@@ -123,7 +123,7 @@ class HorizontalCalendarViewTests: XCTestCase {
   }
   
   func testInterItemSpacing() {
-    let calendar = HorizontalCalendarView.init(frame: CGRectZero)
+    let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
     
     let spacing = calendar.collectionView(calendar.collectionView!, layout: calendar.collectionView!.collectionViewLayout, minimumInteritemSpacingForSectionAtIndex: 1)
     
@@ -131,10 +131,10 @@ class HorizontalCalendarViewTests: XCTestCase {
   }
   
   func testCellForItemAtIndexPath() {
-    let calendar = HorizontalCalendarView.init(frame: CGRectZero)
-    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+    let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
+    let indexPath = IndexPath(row: 0, section: 0)
 
-    let cell : CalendarCollectionViewCell = calendar.collectionView(calendar.collectionView!, cellForItemAtIndexPath: indexPath) as! CalendarCollectionViewCell
+    let cell : CalendarCollectionViewCell = calendar.collectionView(calendar.collectionView!, cellForItemAt: indexPath) as! CalendarCollectionViewCell
     
     XCTAssertNotNil(cell)
     XCTAssertTrue(cell.dayLabel.text == "01")
@@ -142,21 +142,21 @@ class HorizontalCalendarViewTests: XCTestCase {
   }
   
   func testCellForItemAtIndexPathActive() {
-    let calendar = HorizontalCalendarView.init(frame: CGRectZero)
-    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+    let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
+    let indexPath = IndexPath(row: 0, section: 0)
     calendar.activeIndexPath = indexPath
     
-    let cell : CalendarCollectionViewCell = calendar.collectionView(calendar.collectionView!, cellForItemAtIndexPath: indexPath) as! CalendarCollectionViewCell
+    let cell : CalendarCollectionViewCell = calendar.collectionView(calendar.collectionView!, cellForItemAt: indexPath) as! CalendarCollectionViewCell
     
     XCTAssertNotNil(cell)
     XCTAssertTrue(cell.dayLabel.text == "01")
     XCTAssertTrue(cell.monthLabel.text == "Jan")
-    XCTAssertTrue(cell.reddotImageView.hidden == false)
+    XCTAssertTrue(cell.reddotImageView.isHidden == false)
   }
   
   func testSizeForItem() {
-    let calendar = HorizontalCalendarView.init(frame: CGRectZero)
-    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+    let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
+    let indexPath = IndexPath(row: 0, section: 0)
     
     let size = calendar.collectionView(calendar.collectionView!, layout: calendar.collectionView!.collectionViewLayout, sizeForItemAtIndexPath: indexPath)
     
@@ -164,7 +164,7 @@ class HorizontalCalendarViewTests: XCTestCase {
   }
   
   func testInsetForSection() {
-    let calendar = HorizontalCalendarView.init(frame: CGRectZero)
+    let calendar = HorizontalCalendarView.init(frame: CGRect.zero)
     
     let insets = calendar.collectionView(calendar.collectionView!, layout: calendar.collectionView!.collectionViewLayout, insetForSectionAtIndex: 0)
     

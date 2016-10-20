@@ -21,7 +21,7 @@ class ViewController: UIViewController, HorizontalCalendarDelegate {
     addCustomCalendarViewWithConstraint()
     
     interfaceDesignerCalendarView.delegate = self
-    interfaceDesignerCalendarView.moveToDate(NSDate(), animated: true)
+    interfaceDesignerCalendarView.moveToDate(Date(), animated: true)
   }
 
   override func didReceiveMemoryWarning() {
@@ -29,10 +29,10 @@ class ViewController: UIViewController, HorizontalCalendarDelegate {
     // Dispose of any resources that can be recreated.
   }
   
-  func horizontalCalendarViewDidUpdate(calendar: HorizontalCalendarView, date: NSDate) {
-    let formatter: NSDateFormatter = NSDateFormatter()
+  func horizontalCalendarViewDidUpdate(_ calendar: HorizontalCalendarView, date: Date) {
+    let formatter: DateFormatter = DateFormatter()
     formatter.dateFormat = "dd.MM.YYYY"
-    print("Updated calendarView \(formatter.stringFromDate(date))")
+    print("Updated calendarView \(formatter.string(from: date))")
   }
   
   func addCalendarViewWithConstraints() {
@@ -41,19 +41,19 @@ class ViewController: UIViewController, HorizontalCalendarDelegate {
     calendarView.delegate = self
     view.addSubview(calendarView)
     
-    let topConstraint = NSLayoutConstraint(item: calendarView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 20)
+    let topConstraint = NSLayoutConstraint(item: calendarView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 20)
     view.addConstraint(topConstraint)
     
-    let heightConstraing = NSLayoutConstraint(item: calendarView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 80)
+    let heightConstraing = NSLayoutConstraint(item: calendarView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 80)
     view.addConstraint(heightConstraing)
     
-    let leadingConstraint = NSLayoutConstraint(item: calendarView, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
+    let leadingConstraint = NSLayoutConstraint(item: calendarView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0)
     view.addConstraint(leadingConstraint)
     
-    let trailingConstraint = NSLayoutConstraint(item: calendarView, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
+    let trailingConstraint = NSLayoutConstraint(item: calendarView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0)
     view.addConstraint(trailingConstraint)
     
-    calendarView.moveToDate(NSDate(), animated: true)
+    calendarView.moveToDate(Date(), animated: true)
   }
   
   func addCustomCalendarViewWithConstraint() {
@@ -63,19 +63,19 @@ class ViewController: UIViewController, HorizontalCalendarDelegate {
     customCalendarView.mininumLineSpacing = 1.0
     view.addSubview(customCalendarView)
     
-    let customTopConstraint = NSLayoutConstraint(item: customCalendarView, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 150)
+    let customTopConstraint = NSLayoutConstraint(item: customCalendarView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 150)
     view.addConstraint(customTopConstraint)
     
-    let customHeightConstraing = NSLayoutConstraint(item: customCalendarView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100)
+    let customHeightConstraing = NSLayoutConstraint(item: customCalendarView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100)
     view.addConstraint(customHeightConstraing)
     
-    let customLeadingConstraint = NSLayoutConstraint(item: customCalendarView, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
+    let customLeadingConstraint = NSLayoutConstraint(item: customCalendarView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0)
     view.addConstraint(customLeadingConstraint)
     
-    let customTrailingConstraint = NSLayoutConstraint(item: customCalendarView, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
+    let customTrailingConstraint = NSLayoutConstraint(item: customCalendarView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0)
     view.addConstraint(customTrailingConstraint)
     
-    customCalendarView.moveToDate(NSDate(), animated: true)
+    customCalendarView.moveToDate(Date(), animated: true)
   }
 }
 

@@ -9,15 +9,15 @@
 import UIKit
 
 public protocol HorizontalCalendarDelegate {
-  func horizontalCalendarViewDidUpdate(calendar: HorizontalCalendarView, date: NSDate)
+  func horizontalCalendarViewDidUpdate(_ calendar: HorizontalCalendarView, date: Date)
 }
 
 public protocol CalendarViewRepresentation {
-  func configureCalendarCell(cell: UICollectionViewCell, date: NSDate, active: Bool) -> UICollectionViewCell
+  func configureCalendarCell(_ cell: UICollectionViewCell, date: Date, active: Bool) -> UICollectionViewCell
 }
 
 extension UICollectionViewCell : CalendarViewRepresentation {
-  public func configureCalendarCell(cell: UICollectionViewCell, date: NSDate, active: Bool) -> UICollectionViewCell {
+  open func configureCalendarCell(_ cell: UICollectionViewCell, date: Date, active: Bool) -> UICollectionViewCell {
     return cell
   }
 }

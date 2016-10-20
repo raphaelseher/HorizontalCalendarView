@@ -17,21 +17,21 @@ class CalendarCollectionViewCell: UICollectionViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
-    layer.borderColor = UIColor.grayColor().CGColor
+    layer.borderColor = UIColor.gray.cgColor
     layer.borderWidth = 1.0
   }
   
-  override func configureCalendarCell(cell: UICollectionViewCell, date: NSDate, active: Bool) -> UICollectionViewCell {
-    reddotImageView.hidden = true;
+  override func configureCalendarCell(_ cell: UICollectionViewCell, date: Date, active: Bool) -> UICollectionViewCell {
+    reddotImageView.isHidden = true;
     
-    let dateFormatter = NSDateFormatter()
+    let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "dd"
-    dayLabel.text = dateFormatter.stringFromDate(date)
+    dayLabel.text = dateFormatter.string(from: date)
     dateFormatter.dateFormat = "MMM"
-    monthLabel.text = dateFormatter.stringFromDate(date)
+    monthLabel.text = dateFormatter.string(from: date)
     
     if active {
-      reddotImageView.hidden = false;
+      reddotImageView.isHidden = false;
     }
     
     return cell;

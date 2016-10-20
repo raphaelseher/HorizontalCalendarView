@@ -25,7 +25,7 @@ class CalendarFlowLayoutTests: XCTestCase {
     let layout = CalendarFlowLayout(cellWidth: 80)
 
     XCTAssertEqual(layout.cellWidth, 80)
-    XCTAssertEqual(layout.scrollDirection, UICollectionViewScrollDirection.Horizontal)
+    XCTAssertEqual(layout.scrollDirection, UICollectionViewScrollDirection.horizontal)
   }
   
   //TODO: Better testing if needed
@@ -33,7 +33,7 @@ class CalendarFlowLayoutTests: XCTestCase {
     let calendar = HorizontalCalendarView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
     let layout : CalendarFlowLayout = calendar.collectionView!.collectionViewLayout as! CalendarFlowLayout
     
-    let offset = layout.targetContentOffsetForProposedContentOffset(CGPoint(x: 1000, y: 0), withScrollingVelocity: CGPoint(x: 1.3, y: 0))
+    let offset = layout.targetContentOffset(forProposedContentOffset: CGPoint(x: 1000, y: 0), withScrollingVelocity: CGPoint(x: 1.3, y: 0))
     
     XCTAssertNotNil(offset)
   }

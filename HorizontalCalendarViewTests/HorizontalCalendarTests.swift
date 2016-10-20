@@ -28,11 +28,11 @@ class HorizontalCalendarTests: XCTestCase {
   
   func testThatFirstDayInYearReturnsFirstDay() {
     let cal : HorizontalCalendar = HorizontalCalendar()
-    let dateComponents : NSDateComponents = NSDateComponents()
+    var dateComponents : DateComponents = DateComponents()
     dateComponents.day = 1
     dateComponents.month = 1
     dateComponents.year = 2015
-    let checkDate = cal.calendar.dateFromComponents(dateComponents)
+    let checkDate = cal.calendar.date(from: dateComponents)
     
     let firstDayInYear = cal.firstDayInYear(2015)
     
@@ -53,9 +53,9 @@ class HorizontalCalendarTests: XCTestCase {
   
   func testThatTruncateDateToYearReturnsFormattedDate() {
     let cal : HorizontalCalendar = HorizontalCalendar()
-    let dateComponents = cal.calendar.components([.Year, .Month, .Day], fromDate: NSDate())
-    let checkDate = cal.calendar.dateFromComponents(dateComponents)
+    let dateComponents = cal.calendar.components([.year, .month, .day], from: Date())
+    let checkDate = cal.calendar.date(from: dateComponents)
     
-    XCTAssertEqual(checkDate, cal.truncateDateToYearMonthDay(NSDate()))
+    XCTAssertEqual(checkDate, cal.truncateDateToYearMonthDay(Date()))
   }
 }

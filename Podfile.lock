@@ -1,5 +1,5 @@
 PODS:
-  - HorizontalCalendarView (0.0.1)
+  - HorizontalCalendarView (0.0.2)
 
 DEPENDENCIES:
   - HorizontalCalendarView (from `.`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "."
 
 SPEC CHECKSUMS:
-  HorizontalCalendarView: 3eaa716c0d0b45c18e695481e12385b4b567fd76
+  HorizontalCalendarView: 8d9f7dd9159067ffb84cf88fe9ca6d7e74c93f4a
 
 PODFILE CHECKSUM: 1db37019b03b17f7b04eba98f8752db5dd021753
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.0.1
