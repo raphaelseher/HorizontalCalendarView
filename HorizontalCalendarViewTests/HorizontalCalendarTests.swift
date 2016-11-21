@@ -53,7 +53,7 @@ class HorizontalCalendarTests: XCTestCase {
   
   func testThatTruncateDateToYearReturnsFormattedDate() {
     let cal : HorizontalCalendar = HorizontalCalendar()
-    let dateComponents = cal.calendar.components([.year, .month, .day], from: Date())
+    let dateComponents = cal.calendar.dateComponents([.year, .month, .day], from: Date())
     let checkDate = cal.calendar.date(from: dateComponents)
     
     XCTAssertEqual(checkDate, cal.truncateDateToYearMonthDay(Date()))

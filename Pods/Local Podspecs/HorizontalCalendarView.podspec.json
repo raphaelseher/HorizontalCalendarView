@@ -1,6 +1,6 @@
 {
   "name": "HorizontalCalendarView",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "summary": "A horizontal scrolling calendar.",
   "description": "Custom UIView with an UICollectionView as calendar.\n\nUse your custom UICollectionView cell if you like.\nTo do that call the right initializer and override configureCalendarCell()\nmethod.",
   "homepage": "https://github.com/raphaelseher/HorizontalCalendarView",
@@ -18,7 +18,7 @@
   },
   "source": {
     "git": "https://github.com/raphaelseher/HorizontalCalendarView.git",
-    "tag": "0.0.1"
+    "tag": "v0.0.2"
   },
   "source_files": [
     "HorizontalCalendar",
