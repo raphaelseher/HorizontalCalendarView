@@ -144,7 +144,8 @@ open class HorizontalCalendarView: UIView {
       let currentDate = dates[(indexPath as NSIndexPath).row]
       
       if year > startingYear {
-        dates.append(horizontalCalendar.datesForYear(year).first!)
+        let datesOfNextYear = horizontalCalendar.datesForYear(year)
+        dates.append(contentsOf: datesOfNextYear)
       } else if (year < startingYear) {
         let newDates = horizontalCalendar.datesForYear(year)
         dates.insert(contentsOf: newDates, at: 0)
